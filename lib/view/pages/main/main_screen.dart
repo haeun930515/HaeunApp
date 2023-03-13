@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:haeunapp/controller/main_controller.dart';
-import 'package:haeunapp/view/pray_feed_page.dart';
-import 'package:haeunapp/view/pray_list_page.dart';
+import 'package:haeunapp/view/pages/main/sub_screens/pray_feed_page.dart';
+import 'package:haeunapp/view/pages/main/sub_screens/pray_list_page.dart';
 
 class MainScreen extends GetView<MainController> {
   const MainScreen({super.key});

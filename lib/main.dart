@@ -1,9 +1,20 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:haeunapp/controller/auth_controller.dart';
 import 'package:haeunapp/controller/main_controller.dart';
-import 'package:haeunapp/view/main/main_screen.dart';
+import 'package:haeunapp/firebase_options.dart';
+import 'package:haeunapp/view/pages/login/login_screen.dart';
 
-void main() {
+late final FirebaseApp app;
+late final FirebaseAuth auth;
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  app = await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  auth = FirebaseAuth.instanceFor(app: app);
   runApp(const MainApp());
 }
 
@@ -16,9 +27,10 @@ class MainApp extends StatelessWidget {
       title: 'Flutter App Haeun',
       initialBinding: BindingsBuilder(() {
         Get.put(MainController());
+        Get.put(AuthController());
       }),
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const MainScreen(),
+      home: const LoginScreen(),
     );
   }
 }

@@ -3,6 +3,7 @@ import '../model/pray.dart';
 
 class PrayController extends GetxController {
   var prays = <Pray>[].obs;
+  var allPrays = <Pray>[].obs;
 
   @override
   void onInit() {
