@@ -12,25 +12,18 @@ class LoginScreen extends GetView<AuthController> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.grey,
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: const Padding(
-                      padding: EdgeInsets.only(left: 5),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            border: InputBorder.none, hintText: 'email'),
-                      ),
-                    ),
-                  ))
-            ],
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.grey,
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(5)),
+            child: const Padding(
+              padding: EdgeInsets.only(left: 5),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: InputBorder.none, hintText: 'email'),
+              ),
+            ),
           )
         ],
       ),
