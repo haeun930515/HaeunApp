@@ -4,17 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:haeunapp/controller/auth_controller.dart';
 import 'package:haeunapp/controller/main_controller.dart';
-import 'package:haeunapp/firebase_options.dart';
 import 'package:haeunapp/view/pages/login/login_screen.dart';
 
 late final FirebaseApp app;
 late final FirebaseAuth auth;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  app = await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  auth = FirebaseAuth.instanceFor(app: app);
+  await Firebase.initializeApp().then((value) => Get.put(AuthController()));
   runApp(const MainApp());
 }
 
@@ -30,7 +26,7 @@ class MainApp extends StatelessWidget {
         Get.put(AuthController());
       }),
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const LoginScreen(),
+      home: LoginScreen(),
     );
   }
 }
