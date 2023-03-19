@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 class PrayCardWidget extends StatelessWidget {
   const PrayCardWidget(
       {super.key,
-      required this.writer,
+      required this.timestamp,
       required this.content,
-      required this.id});
+      required this.liked,
+      required this.owner});
 
-  final String writer;
+  final String timestamp;
   final String content;
-  final int id;
+  final int liked;
+  final String owner;
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +23,16 @@ class PrayCardWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                id.toString(),
+                owner,
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
               Text(content)
             ],
           ),
-          Text(writer)
+          Text(timestamp),
+          Text(liked.toString()),
+          Text(content)
         ],
       ),
     );

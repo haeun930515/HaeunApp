@@ -11,6 +11,12 @@ class PrayListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          title: const Text(
+            "My Prays",
+            style: TextStyle(color: Color.fromARGB(221, 134, 134, 134)),
+          ),
+          backgroundColor: const Color.fromARGB(255, 255, 241, 198)),
       backgroundColor: const Color.fromARGB(255, 255, 241, 198),
       body: Column(children: [
         Expanded(
@@ -19,9 +25,11 @@ class PrayListPage extends StatelessWidget {
               itemCount: controller.prays.length,
               itemBuilder: (context, index) {
                 return PrayCardWidget(
-                    writer: "${controller.prays[index].id}writer",
-                    content: controller.prays[index].text,
-                    id: controller.prays[index].id);
+                  owner: controller.prays[index].owner,
+                  content: controller.prays[index].content,
+                  liked: controller.prays[index].liked,
+                  timestamp: controller.prays[index].timestamp,
+                );
               },
             );
           }),

@@ -32,14 +32,11 @@ class SettingPage extends GetView<AuthController> {
               const SizedBox(
                 height: 30,
               ),
-              Container(
-                child: const Center(
-                  child: Text(
-                    "name space",
-                    // controller.authentication.currentUser!.email.toString(),
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 79, 158, 165), fontSize: 30),
-                  ),
+              Center(
+                child: Text(
+                  controller.authentication.currentUser!.email.toString(),
+                  style: const TextStyle(
+                      color: Color.fromARGB(255, 79, 158, 165), fontSize: 30),
                 ),
               ),
               const SizedBox(
@@ -69,7 +66,16 @@ class SettingPage extends GetView<AuthController> {
                   ),
                   Container(
                     padding: const EdgeInsets.all(20),
-                    color: const Color.fromARGB(255, 255, 241, 198),
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 255, 241, 198),
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey.withOpacity(0.9),
+                              offset: const Offset(0, 5),
+                              spreadRadius: 2,
+                              blurRadius: 7)
+                        ]),
                     child: const SizedBox(
                       height: 50,
                       width: 50,
@@ -80,14 +86,26 @@ class SettingPage extends GetView<AuthController> {
                   ),
                   Container(
                     padding: const EdgeInsets.all(20),
-                    color: const Color.fromARGB(255, 255, 241, 198),
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 255, 241, 198),
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey.withOpacity(0.9),
+                              offset: const Offset(0, 5),
+                              spreadRadius: 2,
+                              blurRadius: 7)
+                        ]),
                     child: const SizedBox(
                       height: 50,
                       width: 50,
                     ),
-                  )
+                  ),
                 ],
-              )
+              ),
+              TextButton(
+                  onPressed: () => AuthController.instance.logout(),
+                  child: const Text("button"))
             ],
           ),
         ));

@@ -11,17 +11,25 @@ class PrayFeedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          title: const Text(
+            "All Prays",
+            style: TextStyle(color: Color.fromARGB(221, 134, 134, 134)),
+          ),
+          backgroundColor: const Color.fromARGB(255, 255, 241, 198)),
       backgroundColor: const Color.fromARGB(255, 255, 241, 198),
       body: Column(children: [
         Expanded(child: GetX<PrayController>(
           builder: (controller) {
             return ListView.builder(
-                itemCount: controller.prays.length,
+                itemCount: controller.allPrays.length,
                 itemBuilder: (context, index) {
                   return PrayCardWidget(
-                      writer: "${controller.prays[index].id}writer",
-                      content: controller.prays[index].text,
-                      id: controller.prays[index].id);
+                    owner: controller.allPrays[index].owner,
+                    content: controller.allPrays[index].content,
+                    liked: controller.allPrays[index].liked,
+                    timestamp: controller.allPrays[index].timestamp,
+                  );
                 });
           },
         )),

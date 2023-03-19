@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:haeunapp/controller/auth_controller.dart';
 import '../model/pray.dart';
 
 class PrayController extends GetxController {
   var prays = <Pray>[].obs;
   var allPrays = <Pray>[].obs;
+
+  final firestore = FirebaseFirestore.instance;
 
   @override
   void onInit() {
@@ -12,14 +16,24 @@ class PrayController extends GetxController {
   }
 
   void fetchData() async {
-    await Future.delayed(const Duration(seconds: 2));
-    var prayData = [
-      Pray(1, "This is pray"),
-      Pray(2, "This another is pray"),
-      Pray(3, "This is another pray"),
-      Pray(4, "This is pray another "),
-      Pray(5, "This is pray"),
-    ];
-    prays.assignAll(prayData);
+    try {
+      var result = await firestore.collection("allPrays").get();
+      for (var pray in result.docs) {
+        Pray pr = Pray.fromJson(pray.data());
+        allPrays.add(pr);
+      }
+      for (var pray in result.docs) {
+        Pray pr = Pray.fromJson(pray.data());
+        if (pr.owner ==
+            AuthController.instance.authentication.currentUser?.email) {
+          prays.add(pr);
+        }
+      }
+      // .doc("ROvzwMkNO3UrbYNuedib")
+      // Pray pr = Pray.fromJson(result.data()!);
+      // print(pr.liked);
+    } catch (e) {}
+
+    // prays.assignAll(prayData);
   }
 }
