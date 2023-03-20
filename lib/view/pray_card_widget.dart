@@ -15,24 +15,63 @@ class PrayCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey.withOpacity(0.9),
+                offset: const Offset(0, 5),
+                spreadRadius: 2,
+                blurRadius: 7)
+          ]),
+      child: Column(
         children: [
-          Column(
+          Container(
+            padding:
+                const EdgeInsets.only(left: 5, top: 8, right: 5, bottom: 5),
+            decoration: const BoxDecoration(
+              color: Colors.amber,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+            ),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    owner,
+                  ),
+                  const VerticalDivider(
+                    color: Colors.black,
+                    thickness: 1,
+                  ),
+                  const Text("소제목"),
+                ]),
+          ),
+          Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                owner,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+              Flexible(
+                flex: 1,
+                child: Column(
+                  children: [
+                    Text(
+                      timestamp,
+                    ),
+                    Text(liked.toString()),
+                    const Text("PlaceHolder")
+                  ],
+                ),
               ),
-              Text(content)
+              Flexible(
+                flex: 3,
+                child: Text(content),
+              )
             ],
           ),
-          Text(timestamp),
-          Text(liked.toString()),
-          Text(content)
         ],
       ),
     );

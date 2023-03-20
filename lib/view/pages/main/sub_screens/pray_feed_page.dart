@@ -21,14 +21,19 @@ class PrayFeedPage extends StatelessWidget {
       body: Column(children: [
         Expanded(child: GetX<PrayController>(
           builder: (controller) {
-            return ListView.builder(
+            return PageView.builder(
+                scrollDirection: Axis.vertical,
                 itemCount: controller.allPrays.length,
                 itemBuilder: (context, index) {
-                  return PrayCardWidget(
-                    owner: controller.allPrays[index].owner,
-                    content: controller.allPrays[index].content,
-                    liked: controller.allPrays[index].liked,
-                    timestamp: controller.allPrays[index].timestamp,
+                  return Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                    child: PrayCardWidget(
+                      owner: controller.allPrays[index].owner,
+                      content: controller.allPrays[index].content,
+                      liked: controller.allPrays[index].liked,
+                      timestamp: controller.allPrays[index].timestamp,
+                    ),
                   );
                 });
           },
