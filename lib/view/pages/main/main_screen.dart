@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:haeunapp/controller/main_controller.dart';
+import 'package:haeunapp/view/pages/main/sub_screens/pray_create_page.dart';
 import 'package:haeunapp/view/pages/main/sub_screens/pray_feed_page.dart';
 import 'package:haeunapp/view/pages/main/sub_screens/pray_list_page.dart';
 import 'package:haeunapp/view/pages/main/sub_screens/setting_page.dart';
@@ -13,7 +14,12 @@ class MainScreen extends GetView<MainController> {
     return Obx(() => Scaffold(
           body: IndexedStack(
             index: controller.rootPageIndex.value,
-            children: [PrayFeedPage(), PrayListPage(), const SettingPage()],
+            children: [
+              PrayFeedPage(),
+              PrayListPage(),
+              const PrayCreatePage(),
+              const SettingPage()
+            ],
           ),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: controller.rootPageIndex.toInt(),
@@ -36,6 +42,14 @@ class MainScreen extends GetView<MainController> {
                 ),
                 label: '',
                 activeIcon: Icon(Icons.list, color: Colors.blue),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.create,
+                  color: Colors.grey,
+                ),
+                label: '',
+                activeIcon: Icon(Icons.create, color: Colors.blue),
               ),
               BottomNavigationBarItem(
                   icon: Icon(
