@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:haeunapp/controller/auth_controller.dart';
 import 'package:haeunapp/controller/pray_controller.dart';
+import 'package:haeunapp/view/widgets/bible_alert_widget.dart';
 
 class PrayCreatePage extends GetView<PrayController> {
   const PrayCreatePage({super.key});
@@ -63,13 +64,19 @@ class PrayCreatePage extends GetView<PrayController> {
                       color: Color.fromRGBO(250, 234, 177, 1)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        "timestamp",
+                    children: [
+                      const Text(
+                        "인용구",
                       ),
-                      Text(
-                        "PlaceHolder",
-                        style: TextStyle(fontSize: 24),
+                      GestureDetector(
+                        onTap: () {
+                          controller.visible;
+                          print(controller.visible);
+                          Get.dialog(BibleAlertWidget());
+                        },
+                        child: const Icon(
+                          Icons.format_quote,
+                        ),
                       )
                     ],
                   ),
@@ -86,14 +93,13 @@ class PrayCreatePage extends GetView<PrayController> {
                         bottomRight: Radius.circular(8)),
                   ),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Expanded(
-                          child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                            Text("content"),
-                          ])),
+                      TextField(
+                        controller: controller.prayContentController,
+                        decoration:
+                            const InputDecoration(border: InputBorder.none),
+                      )
                     ],
                   ),
                 ),
