@@ -15,6 +15,7 @@ dependencies:
   get:
   getwidget: ^2.0.4
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -22,3 +23,11 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  fonts:
+    - family: Dongle
+      fonts:
+      - asset: assets/font/Dongle-Regular.ttf
+    - family: PS
+      fonts:
+      - asset: assets/font/PoorStory-Regular.ttf

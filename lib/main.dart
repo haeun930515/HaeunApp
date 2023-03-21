@@ -25,7 +25,7 @@ class MainApp extends StatelessWidget {
         Get.put(MainController());
         Get.put(AuthController());
       }),
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'PS'),
       home: const LoginScreen(),
     );
   }

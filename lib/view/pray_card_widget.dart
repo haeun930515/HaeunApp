@@ -29,12 +29,13 @@ class PrayCardWidget extends StatelessWidget {
                 blurRadius: 7)
           ]),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
             padding:
                 const EdgeInsets.only(left: 5, top: 8, right: 5, bottom: 5),
             decoration: const BoxDecoration(
-              color: Colors.amber,
+              color: Color.fromRGBO(229, 186, 115, 1),
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(8), topRight: Radius.circular(8)),
             ),
@@ -44,34 +45,56 @@ class PrayCardWidget extends StatelessWidget {
                   Text(
                     owner,
                   ),
-                  const VerticalDivider(
-                    color: Colors.black,
-                    thickness: 1,
-                  ),
                   const Text("소제목"),
                 ]),
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Flexible(
-                flex: 1,
-                child: Column(
-                  children: [
-                    Text(
-                      timestamp,
-                    ),
-                    Text(liked.toString()),
-                    const Text("PlaceHolder")
-                  ],
-                ),
+          Flexible(
+            flex: 1,
+            child: Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration:
+                  const BoxDecoration(color: Color.fromRGBO(250, 234, 177, 1)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    timestamp,
+                  ),
+                  const Text(
+                    "PlaceHolder",
+                    style: TextStyle(fontSize: 24),
+                  )
+                ],
               ),
-              Flexible(
-                flex: 3,
-                child: Text(content),
-              )
-            ],
+            ),
           ),
+          Flexible(
+            flex: 3,
+            child: Container(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Expanded(
+                      child: Text(
+                    content,
+                    style: const TextStyle(
+                        fontSize: 24, fontWeight: FontWeight.w500),
+                  )),
+                ],
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Container(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [Text(liked.toString())],
+              ),
+            ),
+          )
         ],
       ),
     );
