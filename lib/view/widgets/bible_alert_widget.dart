@@ -77,6 +77,7 @@ class BibleAlertWidget extends GetView<PrayController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.transparent,
       body: Stack(children: [
         GestureDetector(
@@ -114,6 +115,7 @@ class BibleAlertWidget extends GetView<PrayController> {
                               child: TextField(
                                 keyboardType: TextInputType.number,
                                 controller: controller.chapter,
+                                scrollPadding: const EdgeInsets.only(bottom: 0),
                               ),
                             ),
                           ),
