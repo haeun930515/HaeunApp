@@ -71,8 +71,11 @@ class PrayCreatePage extends GetView<PrayController> {
                       GestureDetector(
                         onTap: () {
                           controller.visible;
-                          print(controller.visible);
-                          Get.dialog(BibleAlertWidget());
+                          Get.bottomSheet(
+                            BibleAlertWidget(),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                          );
                         },
                         child: const Icon(
                           Icons.format_quote,

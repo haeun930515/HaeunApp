@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:haeunapp/controller/auth_controller.dart';
+import 'package:haeunapp/provider/api_service.dart';
+import 'package:haeunapp/utils/bible_chapter_changer.dart';
 import '../model/pray.dart';
 
 class PrayController extends GetxController {
@@ -9,6 +11,12 @@ class PrayController extends GetxController {
   var allPrays = <Pray>[].obs;
 
   var selectedTitle = "창세기".obs;
+  var chapter = TextEditingController();
+  var verse = TextEditingController();
+
+  var bibleContent = "".obs;
+
+  var isLoading = false.obs;
 
   var visible = false.obs;
 
@@ -40,11 +48,19 @@ class PrayController extends GetxController {
           prays.add(pr);
         }
       }
-      // .doc("ROvzwMkNO3UrbYNuedib")
-      // Pray pr = Pray.fromJson(result.data()!);
-      // print(pr.liked);
     } catch (e) {}
+  }
 
-    // prays.assignAll(prayData);
+  void fetchBible(String chapter, String verse) async {
+    isLoading.value = true;
+    String pg = BibleChapterChanger().getChapter(selectedTitle.value);
+    String chp = "$chapter:$verse";
+    try {
+      await ApiService()
+          .getQuote("$pg/$chp")
+          .then((value) => bibleContent.value = "$selectedTitle $value");
+
+      isLoading.value = false;
+    } catch (e) {}
   }
 }

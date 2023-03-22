@@ -14,6 +14,8 @@ dependencies:
     sdk: flutter
   get:
   getwidget: ^2.0.4
+  http: ^0.13.5
+  flutter_html: ^2.1.2
 
 
 dev_dependencies:
