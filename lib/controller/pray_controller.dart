@@ -56,10 +56,13 @@ class PrayController extends GetxController {
     String pg = BibleChapterChanger().getChapter(selectedTitle.value);
     String chp = "$chapter:$verse";
     try {
-      await ApiService()
-          .getQuote("$pg/$chp")
-          .then((value) => bibleContent.value = "$selectedTitle $value");
-
+      await ApiService().getQuote("$pg/$chp").then((value) {
+        if (value.trim() == "Bible verse not found.") {
+          bibleContent.value = "없는 구절입니다.";
+        } else {
+          bibleContent.value = "$selectedTitle $value";
+        }
+      });
       isLoading.value = false;
     } catch (e) {}
   }

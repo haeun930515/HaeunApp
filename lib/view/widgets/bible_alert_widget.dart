@@ -88,7 +88,9 @@ class BibleAlertWidget extends GetView<PrayController> {
               padding: const EdgeInsets.fromLTRB(40, 20, 40, 0),
               decoration: const BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(12))),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8))),
               child: Obx(() => Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
